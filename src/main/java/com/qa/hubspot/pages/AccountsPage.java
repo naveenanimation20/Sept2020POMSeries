@@ -85,5 +85,9 @@ public class AccountsPage extends BasePage {
 
 		return new ProductInfoPage(driver);
 	}
+	
+	public void getAccountsPageDetails() {
+		System.out.println("getAccountsPageDetails");
+	}
 
 }
