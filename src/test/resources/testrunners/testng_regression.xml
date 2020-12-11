@@ -21,22 +21,7 @@
 			<class name="com.qa.hubspot.tests.LoginPageTest" />
 		</classes>
 	</test>
-	
-	<test name="LoginPage Test_FF_83">
-		<parameter name="browser" value="firefox" />
-		<parameter name="version" value="83" />
-		<classes>
-			<class name="com.qa.hubspot.tests.LoginPageTest" />
-		</classes>
-	</test>
-	
-	<test name="LoginPage Test_FF_57">
-		<parameter name="browser" value="firefox" />
-		<parameter name="version" value="57" />
-		<classes>
-			<class name="com.qa.hubspot.tests.LoginPageTest" />
-		</classes>
-	</test>
+
 
 	<test name="AccountsPage Test">
 		<parameter name="browser" value="chrome" />
