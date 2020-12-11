@@ -25,6 +25,8 @@
 
 	<test name="AccountsPage Test">
 		<parameter name="browser" value="chrome" />
+		<parameter name="version" value="80" />
+
 		<classes>
 			<class name="com.qa.hubspot.tests.AccountsPageTest" />
 		</classes>
@@ -32,6 +34,8 @@
 
 	<test name="ProductInfoPage Test">
 		<parameter name="browser" value="chrome" />
+		<parameter name="version" value="80" />
+
 		<classes>
 			<class name="com.qa.hubspot.tests.ProductInfoTest" />
 		</classes>
