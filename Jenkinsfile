@@ -1,52 +1,52 @@
 pipeline { 
 agent any 
     stages { 
+        
         stage ('Build') { 
             steps{
                 echo "Building"
 
             }
         }
-        stage ('Deploy to QA') { 
-        steps{
-                echo "Deploy to QA"
-
+        
+        stage('Test') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "mvn clean install"
+                }
             }
         }
-        stage ('Test on QA') { 
-        steps{
-                echo "REgression test on QA"
-
+                
+     
+        stage('Publish Allure Reports') {
+           steps {
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: '/allure-results']]
+                    ])
+                }
             }
         }
-        stage ('Deploy to stage') { 
-        steps{
-                echo "Deploy to stage"
-
+        
+        
+        stage('Publish Extent Report'){
+            steps{
+                     publishHTML([allowMissing: false,
+                                  alwaysLinkToLastBuild: false, 
+                                  keepAll: false, 
+                                  reportDir: 'build', 
+                                  reportFiles: 'TestExecutionReport.html', 
+                                  reportName: 'HTML Extent Report', 
+                                  reportTitles: ''])
             }
         }
+        
+        
+        
+    }
 
-        stage ('Test on stage') { 
-        steps{
-                echo "sanity test on stage"
-
-            }
-        }
-
-         stage ('Deploy to prod') { 
-        	steps{
-                echo "Deploy to PROD"
-
-            }
-        }
-
-
-        stage ('Monitor') { 
- 			steps{
-                echo "Monitor the PROD logs"
-
-            }
-        }
- 
-    }           
  }
